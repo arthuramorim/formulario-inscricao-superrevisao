@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app" style="background-image: url('lib/img/background.png');">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS PERSONALIZADO -->
+  <link rel="stylesheet" type="text/css" href="lib/css/style.css">
+
+  <!-- CSS BOOTSTRAP  -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <!-- CSS MATERIAL -->
+  <link rel="stylesheet" href="lib/css/angular-material.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <!-- ANGULAR JS -->
+  <script src="lib/js/angular/angular.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <script src="lib/js/controller.js"></script>
+  <script src="lib/js/ngmask.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+  <title></title>
+
+</head>
+
+<loading></loading>
+
+<body ng-controller="appCtrl">
+  <!-- <nav class="navbar fixed-top navbar-light bg-light" style="background-color: #f2f2f2e6 !important;height: 100px;">
+  <a class="navbar-brand" href="http://unefead.com.br/" style="margin-left:40%; margin-right: auto;">
+    <img src="lib/img/nobre.png" height="35" alt="">
+  </a>
+</nav> -->
+
+
+  <div ng-if="sucesso == 1" class="alert alert-success" role="alert">Seus dados foram enviados, obrigado por preencher o
+    formulário!</div>
+  <div class="container" style="max-width: 800px;">
+    <div id="contact">
+
+      <h3 style="text-align: center;"><img src="lib/img/logo.png" style="height: 200px; text-align: center;"><br>
+        <img src="lib/img/garanta-sua-vaga.png" style="width: 300px; text-align: center; padding-bottom: 10px">
+
+      </h3>
+      <!-- <h4>Deixe sua sugestão</h4> -->
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <input class="form-control" placeholder="Seu nome" type="text" tabindex="1" autofocus
+              ng-model="nome_candidato">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6">
+            <input type="email" placeholder="E-Mail" class="form-control" ng-model="email_candidato" tabindex="2">
+          </div>
+
+          <div class="col-md-3">
+            <input type="text" placeholder="Celular" class="form-control" ng-model="celular_candidato" tabindex="3"
+              mask="(99) 9 9999-9999">
+          </div>
+
+          <div class="col-md-3">
+            <input type="text" placeholder="Telefone" class="form-control" ng-model="residencial_candidato" tabindex="4"
+              mask="(99) 9 9999-9999">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Onde estuda atualmente" type="text" tabindex="9" autofocus
+              ng-model="onde_estuda">
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" placeholder="Cursando atualmente (ano)" type="text" tabindex="9" autofocus
+              ng-model="ano_cursando">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6">
+            <label for="exampleInputEmail1">Já escolheu onde vai estudar?</label>
+            <input class="form-control" placeholder="Informe a instituição" type="text" tabindex="4" autofocus
+              ng-model="onde_pretende_estudar">
+          </div>
+
+          <div class="col-md-6">
+            <label for="exampleInputEmail1"> Qual curso?</label>
+            <select ng-options="curso.nome for curso in cursos" ng-model="curso_pretendido" tabindex="3">
+              <option value="">Selecione um curso</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12">
+            <textarea class="form-control" rows="3" ng-show="curso_pretendido.nome == 'Outro Curso'"
+              placeholder="Você selecionou outro curso, informe o nome." ng-model="outro_curso"></textarea>
+          </div>
+        </div>
+        <!-- <hr> -->
+
+        <br>
+        <button id="contact-submit"
+          ng-disabled="!nome_candidato || !email_candidato || !celular_candidato || !residencial_candidato || !onde_estuda || !ano_cursando || !onde_pretende_estudar || !curso_pretendido"
+          ng-click="enviaDados(nome_candidato, email_candidato, celular_candidato, residencial_candidato, onde_estuda, ano_cursando, onde_pretende_estudar, curso_pretendido.nome, outro_curso)">Enviar</button>
+      </form>
+    </div>
+  </div>
+  <br>
+  <!-- <div class="intercambio" id="intercambio">
+
+    <div class="col-lg-offset-3">
+
+
+        <h3>LOREN IPSU DOLORESA </h3><br>
+        <p class="texto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+. </p>
+
+        <p class="texto">Venha fazer parte do <strong class="texto_destaque"></strong>  </p>           
+
+    </div> 
+</div> -->
+  <!-- <img class="img-responsive" src="http://www.ftc.br/megarevisao/img/corpo.png" alt="">  -->
+
+
+  </div>
+  <img class="img-fluid" src="lib/img/participantes.png" alt="">
+
+
+  <img class="img-fluid" src="lib/img/footer.png" alt="">
+
+</body>
+
+</html>
